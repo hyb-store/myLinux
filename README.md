@@ -154,7 +154,75 @@ VIM 编辑器是从 VI 发展出来的一个性能更强大的文本编辑器。
 
 ### 5.1 查看网络IP和网关
 
+> VMware：编辑-》虚拟网络编辑器-》NAT设置
+
+> Windows：VMnet8-》详细信息
+
 ### 5.2 配置网络ip地址
+
+#### 5.2.1 ifconfig配置网络接口
+
+> Windows: ipconfig
+>
+> Linux: ifconfig   # network interfaces configuring 网络接口配置 显示所有网络接口的配置信息
+
+#### 5.2.2 ping测试主机之间网络连通性
+
+> ping 目的主机  （功能描述：测试当前服务器是否可以连接目的主机）
+
+#### 5.2.3 修改IP地址
+
+命令
+
+```bash
+vim /etc/sysconfig/network-scripts/ifcfg-ens33
+```
+
+内容
+
+```
+TYPE="Ethernet" #网络类型（通常是 Ethemet） 
+PROXY_METHOD="none" 
+BROWSER_ONLY="no" 
+BOOTPROTO="static" #IP 的配置方法[none|static|bootp|dhcp]（引导 时不 使用协议|静态分配 IP|BOOTP 协议|DHCP 协议） DEFROUTE="yes" 
+IPV4_FAILURE_FATAL="no" 
+IPV6INIT="yes" 
+IPV6_AUTOCONF="yes" 
+IPV6_DEFROUTE="yes" 
+IPV6_FAILURE_FATAL="no" 
+IPV6_ADDR_GEN_MODE="stable-privacy" 
+NAME="ens33" 
+UUID="e83804c1-3257-4584-81bb-660665ac22f6" #随机 id 
+DEVICE="ens33" #接口名（设备,网卡） 
+ONBOOT="yes" #系统启动的时候网络接口是否有效（yes/no） 
+#IP 地址 
+IPADDR=192.168.1.100 
+#网关 
+GATEWAY=192.168.1.2 
+#域名解析器 
+DNS1=192.168.1.2
+```
+
+重启网络
+
+```bash
+service network restart 
+```
+
+#### 5.2.4 问题
+
+（1）物理机能 ping 通虚拟机，但是虚拟机ping不通物理机，一般都是因为物理机的防火墙问题，把防火墙关闭就行 
+
+（2）虚拟机能 Ping 通物理机，但是虚拟机 Ping 不通外网，一般都是因为 DNS 的设置有问题
+
+（3）虚拟机Ping www.baidu.com显示域名未知等信息，一般查看 GATEWAY 和 DNS 设置是否正确 
+
+（4）如果以上全部设置完还是不行，需要关闭 NetworkManager服务 
+
+- systemctl stop NetworkManager 关闭 
+- systemctl disable NetworkManager 禁用 
+
+（5）如果检查发现systemctl status network有问题需要检查 ifcfg-ens33
 
 ### 5.3 配置主机名
 
