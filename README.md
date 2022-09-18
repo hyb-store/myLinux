@@ -226,7 +226,57 @@ service network restart
 
 ### 5.3 配置主机名
 
+#### 5.3.1 配置主机名称
+
+（1）查看当前服务器主机名称
+
+> hostname （功能描述：查看当前服务器的主机名称）
+
+（2）如果感觉此主机名不合适，可以进行修改。通过编辑/etc/hostname 文件 
+
+> vi /etc/hostname
+
+修改完成后重启生效
+
+（3）也可以用hostnamectl修改
+
+> hostnamectl set-hostname 名字
+
+#### 5.3.2 修改hosts映射文件
+
+（1）修改 linux 的主机映射文件（hosts 文件） 
+
+后续在 hadoop 阶段，虚拟机会比较多，配置时通常会采用主机名的方式配置，比较简单方便。不用刻意记 ip 地址。
+
+- 打开/etc/hosts
+
+  - ```bash
+    vim /etc/hosts
+    ```
+
+  - ```bash
+    192.168.2.100 hadoop100 
+    192.168.2.101 hadoop101 
+    192.168.2.102 hadoop102 
+    ```
+
+- 重启设备，重启后，查看主机名，已经修改成功
+
+（2）修改 windows 的主机映射文件（hosts文件）
+
+- 进入 C:\Windows\System32\drivers\etc 路径 
+
+- 打开 hosts 文件并添加如下内容
+
+  - ```bash
+    192.168.2.100 hadoop100 
+    192.168.2.101 hadoop101 
+    192.168.2.102 hadoop102
+    ```
+
 ### 5.4 远程登录
+
+通常在工作过程中，公司中使用的真实服务器或者是云服务器，都不允许除运维人员之外的员工直接接触，因此就需要通过远程登录的方式来操作。所以，远程登录工具就是必不可缺的，目前，比较主流的有 Xshell, SSH Secure Shell, SecureCRT,FinalShell 等
 
 ## 六、系统管理
 
