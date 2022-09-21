@@ -156,7 +156,7 @@ VIM 编辑器是从 VI 发展出来的一个性能更强大的文本编辑器。
 
 > VMware：编辑-》虚拟网络编辑器-》NAT设置
 
-> Windows：VMnet8-》详细信息
+> Windows：控制面板-》网络和 Internet-》网络连接-》VMnet8-》详细信息
 
 ### 5.2 配置网络ip地址
 
@@ -282,7 +282,19 @@ service network restart
 
 ### 6.1 Linux中的进程和服务
 
+> 计算机中，一个正在执行的程序或命令，被叫做“进程”（process）。 
+>
+> 启动之后一只存在、常驻内存的进程，一般被称作“服务”（service）。
+
 ### 6.2 service服务管理（CentOS 6）
+
+（1） 基本语法
+
+service 服务名 start|stop|restart|status 
+
+（2）经验技巧
+
+查看服务的方法：/etc/init.d/服务名 ,发现只有两个服务保留在 service
 
 ### 6.3 chkconfig设置后台服务的自启配置（CentOS 6）
 
