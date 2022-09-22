@@ -296,7 +296,42 @@ service 服务名 start|stop|restart|status
 
 查看服务的方法：/etc/init.d/服务名 ,发现只有两个服务保留在 service
 
+（3） 案例实操
+
+```bash
+#查看网络服务的状态 
+service network status 
+#停止网络服务 
+service network stop 
+#启动网络服务 
+service network start 
+#重启网络服务 
+service network restart
+```
+
 ### 6.3 chkconfig设置后台服务的自启配置（CentOS 6）
+
+(1） 基本语法
+
+chkconfig （功能描述：查看所有服务器自启配置） 
+
+> chkconfig 服务名 off （功能描述：关掉指定服务的自动启动） 
+>
+> chkconfig 服务名 on （功能描述：开启指定服务的自动启动） 
+>
+> chkconfig 服务名 --list （功能描述：查看服务开机启动状态）
+
+(2） 案例实操
+
+- 开启/关闭 network(网络)服务的自动启动 
+
+> chkconfig network on 
+> chkconfig network off 
+
+- 开启/关闭 network 服务指定级别的自动启动 
+
+> chkconfig --level 指定级别 network on 
+> chkconfig --level 指定级别 network off
 
 ### 6.4 systemctl（CentOS 7）
 
