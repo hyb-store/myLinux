@@ -232,9 +232,14 @@ service network restart
 
 > hostname （功能描述：查看当前服务器的主机名称）
 
+```bash
+[root@localhost /]# hostname
+localhost.localdomain
+```
+
 （2）如果感觉此主机名不合适，可以进行修改。通过编辑/etc/hostname 文件 
 
-> vi /etc/hostname
+> vim /etc/hostname
 
 修改完成后重启生效
 
