@@ -290,12 +290,14 @@ localhost.localdomain
 > 计算机中，一个正在执行的程序或命令，被叫做“进程”（process）。 
 >
 > 启动之后一只存在、常驻内存的进程，一般被称作“服务”（service）。
+>
+> 守护进程(daemon)是一类在后台运行的特殊进程，用于执行特定的系统任务。很多守护进程在系统引导的时候启动，并且一直运行直到系统关闭。另一些只在需要的时候才启动，完成任务后就自动结束。
 
 ### 6.2 service服务管理（CentOS 6）
 
 （1） 基本语法
 
-service 服务名 start|stop|restart|status 
+>  service 服务名 start|stop|restart|status 
 
 （2）经验技巧
 
