@@ -355,13 +355,46 @@ chkconfig （功能描述：查看所有服务器自启配置）
 
 ### 6.4 systemctl（CentOS 7）
 
+（1） 基本语法
+
+> systemctl start | stop | restart | status 服务名 
+
+（2）经验技巧
+
+查看服务的方法：/usr/lib/systemd/system
+
+```bash
+[root@localhost system]# pwd
+/usr/lib/systemd/system
+[root@localhost system]# ls -al
+总用量 1544
+-rw-r--r--.  1 root root   275 10月  2 2020 abrt-ccpp.service
+-rw-r--r--.  1 root root   380 10月  2 2020 abrtd.service
+-rw-r--r--.  1 root root   361 10月  2 2020 abrt-oops.service
+-rw-r--r--.  1 root root   266 10月  2 2020 abrt-pstoreoops.service
+...
+```
+
+（3） 案例实操
+
+```bash
+# 查看防火墙服务的状态 
+systemctl status firewalld 
+# 停止防火墙服务 
+systemctl stop firewalld 
+# 启动防火墙服务 
+systemctl start firewalld 
+# 重启防火墙服务 
+systemctl restart firewalld
+```
+
 ### 6.5 systemctl设置后台服务的自启配置
 
 ### 6.6 系统运行级别
 
 ### 6.7 关闭防火墙
 
-### 6.8 关机重启命令
+### 6.8 关机重启命令SS
 
 ## 七、常用基本命令
 
