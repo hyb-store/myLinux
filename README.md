@@ -303,6 +303,19 @@ localhost.localdomain
 
 查看服务的方法：/etc/init.d/服务名 ,发现只有两个服务保留在 service
 
+```bash
+[root@localhost init.d]# pwd
+/etc/init.d
+[root@localhost init.d]# ls -al
+总用量 40
+drwxr-xr-x.  2 root root    70 9月   6 23:23 .
+drwxr-xr-x. 10 root root   127 9月   6 23:23 ..
+-rw-r--r--.  1 root root 18281 5月  22 2020 functions
+-rwxr-xr-x.  1 root root  4569 5月  22 2020 netconsole
+-rwxr-xr-x.  1 root root  7928 5月  22 2020 network
+-rw-r--r--.  1 root root  1160 10月  2 2020 README
+```
+
 （3） 案例实操
 
 ```bash
