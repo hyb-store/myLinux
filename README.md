@@ -217,7 +217,7 @@ service network restart
 
 （3）虚拟机Ping www.baidu.com显示域名未知等信息，一般查看 GATEWAY 和 DNS 设置是否正确 
 
-（4）如果以上全部设置完还是不行，需要关闭 NetworkManager服务 
+（4）如果以上全部设置完还是不行，需要关闭 NetworkManager服务（或者关闭network，一个centos6一个centos7）
 
 - systemctl stop NetworkManager 关闭 
 - systemctl disable NetworkManager 禁用 
@@ -331,6 +331,14 @@ service network restart
 
 ### 6.3 chkconfig设置后台服务的自启配置（CentOS 6）
 
+命令行输入setup
+
+![image-20221005224414474](imag/image-20221005224414474.png)
+
+选择系统服务，回车，前面的[]括号里面有*为开机自启动，可以按空格切换。SysV对应init.d目录里两个启动脚本。
+
+<img src="imag/image-20221005223532684.png" alt="image-20221005223532684" style="zoom:80%;" />
+
 (1） 基本语法
 
 chkconfig （功能描述：查看所有服务器自启配置） 
@@ -387,6 +395,8 @@ systemctl start firewalld
 # 重启防火墙服务 
 systemctl restart firewalld
 ```
+
+![image-20221005221834218](imag/image-20221005221834218.png)
 
 ### 6.5 systemctl设置后台服务的自启配置
 
