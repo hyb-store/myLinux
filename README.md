@@ -503,9 +503,59 @@ Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 #注：firewalld后面加不加.service都一样
 ```
 
-
-
 ### 6.8 关机重启命令
+
+在 linux 领域内大多用在服务器上，很少遇到关机的操作。毕竟服务器上跑一个服务是永无止境的，除非特殊情况下，不得已才会关机
+
+（1）基本语法
+
+- sync （功能描述：将数据由内存同步到硬盘中） 
+
+- halt（功能描述：停机，关闭系统，但不断电） 
+
+- poweroff（功能描述：关机，断电） 
+
+- reboot（功能描述：就是重启，等同于 shutdown -r now） 
+
+- shutdown [选项] 时间 
+
+  - ```bash
+    shutdown [OPTIONS...] [TIME] [WALL...]
+    
+    [OPTIONS...] 
+         --help      Show this help   停机
+      -H --halt      Halt the machine
+      -P --poweroff  Power-off the machine
+      -r --reboot    Reboot the machine  重启
+      -h             Equivalent to --poweroff, overridden by --halt
+      -k             Don't halt/power-off/reboot, just send warnings
+         --no-wall   Don't send wall message before halt/power-off/reboot
+      -c             Cancel a pending shutdown  取消关闭
+      
+    [TIME]
+      now  立刻关机
+      数字  几分钟后关机，单位：分钟
+      时间  在这个时间定时关机
+    ```
+
+（2） 介绍
+
+Linux系统中为了提高磁盘的读写效率，对磁盘采取了 “预读迟写”操作方式。当用户保存文件时，Linux 核心并不一定立即将保存数据写入物理磁盘中，而是将数据保存在缓冲区中，等缓冲区满时再写入磁盘，这种方式可以极大的提高磁盘写入数据的效率。但是，也带来了安全隐患，如果数据还未写入磁盘时，系统掉电或者其他严重问题出现，则将导致数据丢失。使用`sync`指令可以立即将缓冲区的数据写入磁盘。 
+
+（2）案例实操
+
+```bash
+# 将数据由内存同步到硬盘中 
+[root@localhost ~]# sync 
+# 重启 
+[root@localhost ~]# reboot 
+# 停机（不断电） 
+[root@localhost ~]# halt 
+# 计算机将在 1 分钟后关机，并且会显示在登录用户的当前屏幕中 
+[root@localhost ~]# shutdown -h 1 ‘This server will shutdown after 1 mins’ 
+# 立马关机（等同于 poweroff） 
+[root@localhost ~]# shutdown -h now
+```
 
 ## 七、常用基本命令
 
