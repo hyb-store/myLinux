@@ -18,6 +18,10 @@
 
 
 
+
+
+ctrl+alt+F1，切换为图形化界面。ctrl+alt+F2，F3，F4...为命令行界面
+
 ## 三、Linux文件与目录结构
 
 ### 3.1 Linux文件
@@ -331,11 +335,11 @@ service network restart
 
 ### 6.3 chkconfig设置后台服务的自启配置（CentOS 6）
 
-命令行输入setup
+命令行输入setup，按tab键可以选择功能
 
 ![image-20221005224414474](imag/image-20221005224414474.png)
 
-选择系统服务，回车，前面的[]括号里面有*为开机自启动，可以按空格切换。SysV对应init.d目录里两个启动脚本。
+选择系统服务，回车，前面的[]括号里面有*为开机自启动，可以按空格切换。SysV对应老版本init.d目录里两个启动脚本。
 
 <img src="imag/image-20221005223532684.png" alt="image-20221005223532684" style="zoom:80%;" />
 
@@ -402,9 +406,46 @@ systemctl restart firewalld
 
 ### 6.6 系统运行级别
 
+（1）Linux系统的运行级别runlevel (CentOS6)
+
+![image-20221006214714729](imag/image-20221006214714729.png)
+
+查看默认级别：vim /etc/inittab
+
+Linux系统有7种运行级别(runlevel)：**常用的是级别3和5**
+
+- 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动
+- 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆
+- 运行级别2：多用户状态(没有NFS，网络文件系统),不支持网络
+- 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式
+- 运行级别4：系统未使用，保留
+- 运行级别5：X11控制台,登陆后进入图形GUI模式
+- 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
+
+（2）CentOS7的运行级别简化为
+
+>  multi-user.target 等价于原运行级别 3（多用户有网，无图形界面） 
+
+>  graphical.target 等价于原运行级别 5（多用户有网，有图形界面） 
+
+（3） 查看当前运行级别
+
+> systemctl get-default 
+
+```bash
+[root@localhost ~]# systemctl get-default
+graphical.target
+```
+
+（4）修改当前运行级别
+
+- ctrl+alt+F1，切换为图形化界面(级别5)。ctrl+alt+F2，F3，F4...为命令行界面（级别3）
+- init+运行级别（例如init 3）
+-  systemctl set-default TARGET.target （这里 TARGET 取 multi-user 或者 graphical）
+
 ### 6.7 关闭防火墙
 
-### 6.8 关机重启命令SS
+### 6.8 关机重启命令
 
 ## 七、常用基本命令
 
