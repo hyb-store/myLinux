@@ -431,29 +431,8 @@ systemctl restart firewalld
 
 ```bash
 # 开启/关闭 防火墙(CentOS6防火墙为iptables，CentOS7为firewalld)服务的自动启动 
-[root@localhost ~]# systemctl status firewalld
-● firewalld.service - firewalld - dynamic firewall daemon
-   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
-   Active: active (running) since 四 2022-10-06 19:54:44 CST; 2h 47min ago
-   
-[root@localhost ~]# systemctl stop firewalld
-[root@localhost ~]# systemctl status firewalld
-● firewalld.service - firewalld - dynamic firewall daemon
-   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
-   Active: inactive (dead) since 四 2022-10-06 22:43:48 CST; 2s ago
-   
-[root@localhost ~]# systemctl disable firewalld
-Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
-Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
-[root@localhost ~]# systemctl status firewalld.service
-● firewalld.service - firewalld - dynamic firewall daemon
-   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
-   Active: inactive (dead)
-   
+[root@localhost ~]# systemctl disable firewalld.service
 [root@localhost ~]# systemctl enable firewalld.service
-[root@localhost ~]# systemctl start firewalld.service
-
-#注：firewalld后面加不加.service都一样
 ```
 
 ### 6.6 系统运行级别
@@ -496,6 +475,35 @@ graphical.target
 -  systemctl set-default TARGET.target （这里 TARGET 取 multi-user 或者 graphical）
 
 ### 6.7 关闭防火墙
+
+```bash
+# 开启/关闭 防火墙(CentOS6防火墙为iptables，CentOS7为firewalld)服务的自动启动 
+[root@localhost ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: active (running) since 四 2022-10-06 19:54:44 CST; 2h 47min ago
+   
+[root@localhost ~]# systemctl stop firewalld
+[root@localhost ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: inactive (dead) since 四 2022-10-06 22:43:48 CST; 2s ago
+   
+[root@localhost ~]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@localhost ~]# systemctl status firewalld.service
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+   
+[root@localhost ~]# systemctl enable firewalld.service
+[root@localhost ~]# systemctl start firewalld.service
+
+#注：firewalld后面加不加.service都一样
+```
+
+
 
 ### 6.8 关机重启命令
 
