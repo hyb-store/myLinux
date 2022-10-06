@@ -353,6 +353,21 @@ chkconfig （功能描述：查看所有服务器自启配置）
 >
 > chkconfig 服务名 --list （功能描述：查看服务开机启动状态）
 
+```bash
+[root@localhost ~]# chkconfig --list
+
+注：该输出结果只显示 SysV 服务，并不包含
+原生 systemd 服务。SysV 配置数据
+可能被原生 systemd 配置覆盖。
+
+      要列出 systemd 服务，请执行 'systemctl list-unit-files'。
+      查看在具体 target 启用的服务请执行
+      'systemctl list-dependencies [target]'。
+
+netconsole      0:关    1:关    2:关    3:关    4:关    5:关    6:关
+network         0:关    1:关    2:开    3:开    4:开    5:开    6:关
+```
+
 (2） 案例实操
 
 - 开启/关闭 network(网络)服务的自动启动 
@@ -403,6 +418,43 @@ systemctl restart firewalld
 ![image-20221005221834218](imag/image-20221005221834218.png)
 
 ### 6.5 systemctl设置后台服务的自启配置
+
+（1）基本语法
+
+>  systemctl list-unit-files （功能描述：查看服务开机启动状态） 
+
+> systemctl disable service_name （功能描述：关掉指定服务的自动启动） 
+
+> systemctl enable service_name （功能描述：开启指定服务的自动启动） 
+
+（2）案例实操
+
+```bash
+# 开启/关闭 防火墙(CentOS6防火墙为iptables，CentOS7为firewalld)服务的自动启动 
+[root@localhost ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: active (running) since 四 2022-10-06 19:54:44 CST; 2h 47min ago
+   
+[root@localhost ~]# systemctl stop firewalld
+[root@localhost ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: inactive (dead) since 四 2022-10-06 22:43:48 CST; 2s ago
+   
+[root@localhost ~]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@localhost ~]# systemctl status firewalld.service
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+   
+[root@localhost ~]# systemctl enable firewalld.service
+[root@localhost ~]# systemctl start firewalld.service
+
+#注：firewalld后面加不加.service都一样
+```
 
 ### 6.6 系统运行级别
 
