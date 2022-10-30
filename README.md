@@ -593,6 +593,15 @@ manual：手册; 说明书; 指南;
 
 ```bash
 [root@localhost ~]# man ls
+
+[root@localhost huangyb]# man -f cd 
+cd (1)               - GNU Bourne-Again SHell (GNU 命令解释程序 “Bourne二世”)
+cd (3tcl)            - 改变工作目录
+cd (1p)              - change the working directory
+[root@localhost huangyb]# man 1p cd 
+[root@localhost huangyb]# man 3 cd
+
+[root@localhost huangyb]# man man
 ```
 
 #### 7.1.2 help获得shell内置命令的帮助信息
@@ -602,19 +611,153 @@ manual：手册; 说明书; 指南;
 （1）基本语法 
 
 >  help 命令（功能描述：获得 shell 内置命令的帮助信息） 
+>
+>  type命令  用来显示指定命令的类型，判断给出的指令是内部指令还是外部指令
 
 （2）举例
 
 ```bash
 # 查看 cd 命令的帮助信息,cd,exit命令是shell脚本的内置命令
 [root@localhost ~]#  help cd
+
+[root@localhost huangyb]# help ls
+bash: help: 没有与 `ls' 匹配的帮助主题。尝试 `help help' 或者 `man -k ls' 或者 `info ls'。
+[root@localhost huangyb]# ls --help
+
+# type命令
+[root@localhost huangyb]# type ls
+ls 是 `ls --color=auto' 的别名
+[root@localhost huangyb]# type cd
+cd 是 shell 内嵌
+[root@localhost huangyb]# type useradd
+useradd 是 /usr/sbin/useradd
+[root@localhost huangyb]# type history  # history命令显示之前输入的命令
+history 是 shell 内嵌
+[root@localhost huangyb]# type exit
+exit 是 shell 内嵌
+
 ```
 
+#### 7.1.3 常用快捷键
 
+| 常用快捷键 | 功能                                  |
+| ---------- | ------------------------------------- |
+| CTRL+C     | 停止进程                              |
+| CTRL+L     | 清屏，等同于 clear；彻底清屏是：reset |
+| TAB键      | 提示                                  |
+| 上下键     | 查找执行过的命令                      |
 
 
 
 ### 7.2 文件目录类
+
+#### 7.2.1 pwd
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.2 ls
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.3 cd
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.4 mkdir
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.5 rmdir
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.6 touch
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.7 cp
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.8 rm
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.9 mv
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.10 cat
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.11 more文件内容分屏查看器
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.12 less分屏显示文件内容
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.13 echo
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.14 head显示文件头部内容
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.15 >输出重定向和>>追加
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.16 tail
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.17 ln 软链接
+
+（1）基本语法 
+
+（2）举例
+
+#### 7.2.18 history
+
+（1）基本语法 
+
+（2）举例
 
 ### 7.3 时间日期类
 
