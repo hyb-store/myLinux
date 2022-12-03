@@ -635,7 +635,6 @@ useradd 是 /usr/sbin/useradd
 history 是 shell 内嵌
 [root@localhost huangyb]# type exit
 exit 是 shell 内嵌
-
 ```
 
 #### 7.1.3 常用快捷键
@@ -653,65 +652,256 @@ exit 是 shell 内嵌
 
 #### 7.2.1 pwd
 
+pwd:print working directory 打印工作目录,显示当前工作目录的绝对路径
+
 （1）基本语法 
 
+> pwd ：显示当前工作目录的绝对路径
+
 （2）举例
+
+```bash
+# 显示当前工作目录的绝对路径
+[root@localhost ~]# pwd
+/root
+[root@localhost ~]# type pwd
+pwd 是 shell 内嵌
+```
 
 #### 7.2.2 ls
 
+ls:list 列出目录内容
+
 （1）基本语法 
 
+> ls [选项] [目录或是文件]
+
+（2）选项说明
+
+| 选项 | 功能                                                         |
+| ---- | ------------------------------------------------------------ |
+| -a   | 全部的文件，连同隐藏档( 开头为 . 的文件) 一起列出来(常用)    |
+| -l   | 长数据串列出，包含文件的属性与权限等等数据；(常用)等价于"ll"命令 |
+
+（3）显示说明
+
+每行列出的信息依次是： 文件类型与权限 链接数 文件属所有者 文件属组 文件大小用byte来表示 建立或最近修改的时间 名字
+
 （2）举例
+
+```bash
+[root@localhost ~]# ls
+anaconda-ks.cfg  initial-setup-ks.cfg
+[root@localhost ~]# type ls
+ls 是 `ls --color=auto' 的别名
+[root@localhost ~]# ls -a
+.  ..  anaconda-ks.cfg  .bash_history  .bash_logout  .bash_profile  .bashrc  .cache  .config  .cshrc  .dbus  initial-setup-ks.cfg  .tcshrc  .viminfo  .xauthqJIw7m
+[root@localhost ~]# ls -l
+总用量 8
+-rw-------. 1 root root 1583 9月   6 23:32 anaconda-ks.cfg
+-rw-r--r--. 1 root root 1631 9月   6 23:33 initial-setup-ks.cfg
+[root@localhost ~]# ls -al
+总用量 40
+dr-xr-x---.  5 root root  241 10月 30 18:34 .
+dr-xr-xr-x. 17 root root  224 9月   6 23:31 ..
+-rw-------.  1 root root 1583 9月   6 23:32 anaconda-ks.cfg
+......
+-rw-------.  1 root root  132 10月 30 18:34 .xauthqJIw7m
+[root@localhost ~]# ll
+总用量 8
+-rw-------. 1 root root 1583 9月   6 23:32 anaconda-ks.cfg
+-rw-r--r--. 1 root root 1631 9月   6 23:33 initial-setup-ks.cfg
+[root@localhost ~]# type ll
+ll 是 `ls -l --color=auto' 的别名
+
+```
+
+
 
 #### 7.2.3 cd
 
+cd:Change Directory 切换路径
+
 （1）基本语法 
 
-（2）举例
+> cd [参数]
+
+（2）参数说明
+
+| 参数        | 功能                                 |
+| ----------- | ------------------------------------ |
+| cd 绝对路径 | 切换路径                             |
+| cd 相对路径 | 切换路径                             |
+| cd ~或者 cd | 回到自己的家目录                     |
+| cd -        | 回到上一次所在目录                   |
+| cd ..       | 回到当前目录的上一级目录             |
+| cd -P       | 跳转到实际物理路径，而非快捷方式路径 |
+
+（3）举例
+
+```bash
+
+
+```
 
 #### 7.2.4 mkdir
 
+mkdir:Make directory 建立目录
+
 （1）基本语法 
 
-（2）举例
+> mkdir [选项] 要创建的目录
+
+（2）参数说明
+
+| 选项 | 功能         |
+| ---- | ------------ |
+| -p   | 创建多层目录 |
+
+（3）举例
+
+```bash
+# 创建一个目录
+[root@localhost ~]# mkdir a
+[root@localhost ~]# ls
+a
+[root@localhost ~]# mkdir a/b
+[root@localhost ~]# ls a
+b
+[root@localhost ~]# mkdir c/d
+mkdir: 无法创建目录"c/d": 没有那个文件或目录
+[root@localhost ~]# mkdir c c/d
+[root@localhost ~]# ls c
+d
+# 创建一个多级目录
+[root@localhost ~]# mkdir -p d/e/f
+[root@localhost ~]# ls d/e
+f
+```
 
 #### 7.2.5 rmdir
 
+rmdir:Remove directory 移除目录,删除一个空的目录
+
 （1）基本语法 
 
+> rmdir 要删除的空目录
+
 （2）举例
+
+```bash
+[root@localhost ~]# rmdir c/d c 
+或者
+[root@localhost ~]# rmdir -p c/d     # d目录空删除d，然后c空继续删c
+```
+
+
 
 #### 7.2.6 touch
 
+创建空文件
+
 （1）基本语法 
 
+> touch 文件名称
+
 （2）举例
+
+```bash
+```
+
+
 
 #### 7.2.7 cp
 
+复制文件或目录
+
 （1）基本语法 
 
-（2）举例
+> cp [选项] source dest （功能描述：复制source文件到dest。source:源文件,dest:目标文件）
+
+（2）选项说明
+
+| 选项 | 功能               |
+| ---- | ------------------ |
+| -r   | 递归复制整个文件夹 |
+| -p   |                    |
+
+（3）举例
+
+```bash
+```
+
+
 
 #### 7.2.8 rm
 
+删除文件或目录
+
 （1）基本语法 
 
-（2）举例
+> rm [选项] deleteFile （功能描述：递归删除目录中所有内容）
+
+（2）选项说明
+
+| 选项 | 功能                                   |
+| ---- | -------------------------------------- |
+| -r   | 递归删除目录中所有内容                 |
+| -f   | 强制执行删除操作，而不提示用于进行确认 |
+| -v   | 显示指令的详细执行过程                 |
+
+（3）举例
+
+```bash
+```
+
+
 
 #### 7.2.9 mv
 
+移动文件与目录或重命名
+
 （1）基本语法 
 
+> mv oldNameFile newNameFile （功能描述：重命名） 
+>
+> mv /temp/movefile /targetFolder （功能描述：移动文件）
+
 （2）举例
+
+```bash
+#重命名
+
+#移动文件
+
+```
+
+
 
 #### 7.2.10 cat
 
+查看文件内容，从第一行开始显示。一般查看比较小的文件，一屏幕能显示全的。
+
 （1）基本语法 
 
-（2）举例
+> cat [选项] 要查看的文件
+
+（2）选项说明
+
+| 选项 | 功能描述                     |
+| ---- | ---------------------------- |
+| -n   | 显示所有行的行号，包括空行。 |
+
+（3）举例
+
+```bash
+```
+
+
 
 #### 7.2.11 more文件内容分屏查看器
+
+more 指令是一个基于 VI 编辑器的文本过滤器，它以全屏幕的方式按页显示文本文件的内容。more 指令中内置了若干快捷键，
 
 （1）基本语法 
 
