@@ -737,13 +737,6 @@ cd:Change Directory 切换路径
 | cd ..       | 回到当前目录的上一级目录             |
 | cd -P       | 跳转到实际物理路径，而非快捷方式路径 |
 
-（3）举例
-
-```bash
-
-
-```
-
 #### 7.2.4 mkdir
 
 mkdir:Make directory 建立目录
@@ -795,8 +788,6 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 [root@localhost ~]# rmdir -p c/d     # d目录空删除d，然后c空继续删c
 ```
 
-
-
 #### 7.2.6 touch
 
 创建空文件
@@ -804,13 +795,6 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 （1）基本语法 
 
 > touch 文件名称
-
-（2）举例
-
-```bash
-```
-
-
 
 #### 7.2.7 cp
 
@@ -822,14 +806,36 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 
 （2）选项说明
 
-| 选项 | 功能               |
-| ---- | ------------------ |
-| -r   | 递归复制整个文件夹 |
-| -p   |                    |
+| 选项 | 功能                                                         |
+| ---- | ------------------------------------------------------------ |
+| -r   | 递归复制整个文件夹                                           |
+| -p   | 保持指定的属性(默认：模式,所有权,时间戳)，如果可能保持附加属性：环境、链接、xattr 等 |
 
 （3）举例
 
 ```bash
+[root@localhost ~]# cp initial.cfg /home/huangyb/
+cp：是否覆盖"/home/huangyb/initial.cfg"？ y
+[root@localhost ~]# \cp initial.cfg /home/huangyb/
+# \为直接使用Linux的原生命令
+
+[root@localhost ~]# type cp
+cp 是 `cp -i' 的别名
+#   -i, --interactive      prompt before overwrite (overrides a previous -n option) 提醒在重写前
+# 如果不想被提醒，可以使用\cp原生命令
+
+[root@localhost ~]# alias
+alias cp='cp -i'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias mv='mv -i'
+alias rm='rm -i'
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+
 ```
 
 
@@ -850,13 +856,6 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 | -f   | 强制执行删除操作，而不提示用于进行确认 |
 | -v   | 显示指令的详细执行过程                 |
 
-（3）举例
-
-```bash
-```
-
-
-
 #### 7.2.9 mv
 
 移动文件与目录或重命名
@@ -866,17 +865,6 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 > mv oldNameFile newNameFile （功能描述：重命名） 
 >
 > mv /temp/movefile /targetFolder （功能描述：移动文件）
-
-（2）举例
-
-```bash
-#重命名
-
-#移动文件
-
-```
-
-
 
 #### 7.2.10 cat
 
@@ -892,62 +880,274 @@ rmdir:Remove directory 移除目录,删除一个空的目录
 | ---- | ---------------------------- |
 | -n   | 显示所有行的行号，包括空行。 |
 
-（3）举例
-
-```bash
-```
-
-
-
 #### 7.2.11 more文件内容分屏查看器
 
 more 指令是一个基于 VI 编辑器的文本过滤器，它以全屏幕的方式按页显示文本文件的内容。more 指令中内置了若干快捷键，
 
 （1）基本语法 
 
-（2）举例
+> more 要查看的文件
+
+（2）操作说明
+
+| 操作           | 功能说明                               |
+| -------------- | -------------------------------------- |
+| 空格键 (space) | 代表向下翻一页                         |
+| Enter          | 代表向下翻『一行』                     |
+| q              | 代表立刻离开 more ，不再显示该文件内容 |
+| Ctrl+F         | 向下滚动一屏                           |
+| Ctrl+B         | 返回上一屏                             |
+| =              | 输出当前行的行号                       |
+| :f             | 输出文件名和当前行的行号               |
+
+
 
 #### 7.2.12 less分屏显示文件内容
 
+less 指令用来分屏查看文件内容，它的功能与 more 指令类似，但是比 more 指令更加强大，支持各种显示终端。less 指令在显示文件内容时，并不是一次将整个文件加载之后才显示，而是根据显示需要加载内容，对于显示大型文件具有较高的效率。
+
 （1）基本语法 
 
-（2）举例
+> less 要查看的文件
+
+（2）操作说明
+
+操作和more类似
+
+| 操作           | 功能说明                                         |
+| -------------- | ------------------------------------------------ |
+| 空格键 (space) | 向下翻一页                                       |
+| pagedown       | 向下翻一页                                       |
+| pageup         | 向上翻一页                                       |
+| /字串          | 向下搜寻『字串』的功能；n：向下查找；N：向上查找 |
+| ?字串          | 向上搜寻『字串』的功能；n：向上查找；N：向下查找 |
+| q              | 离开 less 这个程序                               |
+
+用SecureCRT时[pagedown]和[pageup]可能会出现无法识别的问题。
 
 #### 7.2.13 echo
 
+echo 输出内容到控制台
+
 （1）基本语法 
 
+> echo [选项] [输出内容]
+
+选项：
+
+| -e   | 支持反斜线控制的字符转换 |
+| ---- | ------------------------ |
+
+| 控制字符 | 作用                  |
+| -------- | --------------------- |
+| \ \      | 输出\本身             |
+| \n       | 换行符                |
+| \t       | 制表符，也就是 Tab 键 |
+
 （2）举例
+
+```bash
+[root@localhost ~]# echo hello,world
+hello,world
+[root@localhost ~]# echo hello world
+hello world
+[root@localhost ~]# echo hello      world
+hello world
+[root@localhost ~]# echo "hello      world"
+hello      world
+[root@localhost ~]# echo "hello\nworld"
+hello\nworld
+[root@localhost ~]# echo -e  "hello\nworld"
+hello
+world
+[root@localhost huangyb]# echo $
+Display all 131 possibilities? (y or n)
+......
+[root@localhost huangyb]# echo $USER
+huangyb
+[root@localhost huangyb]# echo $HOSTNAME
+localhost.localdomain，
+[root@localhost huangyb]# echo $PATH      # 相当于环境变量，下面这些目录中的脚本，命令，可以被直接执行
+/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/huangyb/.local/bin:/home/huangyb/bin
+
+```
+
+
 
 #### 7.2.14 head显示文件头部内容
 
+head 用于显示文件的开头部分内容，默认情况下 head 指令显示文件的前 10 行内容。
+
 （1）基本语法 
 
-（2）举例
+> head 文件 （功能描述：查看文件头10行内容） 
+>
+> head -n 5 文件 （功能描述：查看文件头5行内容，5可以是任意行数）
+
+（2）选项说明
+
+| 选项      | 功能                   |
+| --------- | ---------------------- |
+| -n <行数> | 指定显示头部内容的行数 |
+
+（3）实例
+
+```bash
+[root@localhost huangyb]# head -n 5 info
+info
+initial.cfg
+公共
+模板
+视频
+```
 
 #### 7.2.15 >输出重定向和>>追加
 
 （1）基本语法 
 
+> （1）ls -l > 文件 （功能描述：列表的内容写入文件 a.txt 中（**覆盖写**））
+
 （2）举例
+
+```bash
+[root@localhost huangyb]# ls > info
+[root@localhost huangyb]# cat info
+info
+initial.cfg
+公共
+模板
+视频
+图片
+文档
+下载
+音乐
+桌面
+[root@localhost huangyb]# echo "hello,world" >> info
+[root@localhost huangyb]# cat info
+info
+initial.cfg
+公共
+模板
+视频
+图片
+文档
+下载
+音乐
+桌面
+hello,world
+
+```
 
 #### 7.2.16 tail
 
+tail 用于输出文件中尾部的内容，默认情况下 tail 指令显示文件的后 10 行内容。
+
 （1）基本语法 
 
-（2）举例
+> （1）tail 文件 （功能描述：查看文件尾部10行内容） 
+>
+> （2）tail -n 5 文件 （功能描述：查看文件尾部5行内容，5可以是任意行数） 
+>
+> （3）tail -f 文件 （功能描述：实时追踪该文档的所有更新）
+
+（2）选项说明
+
+| 选项      | 功能                                                         |
+| --------- | ------------------------------------------------------------ |
+| -n <行数> | 输出文件尾部 n 行内容                                        |
+| -f        | 显示文件最新追加的内容，监视文件变化(ctrl+s暂停，ctrl+q继续) |
+
+（3）实例
+
+```bash
+[root@localhost huangyb]# tail -n 5 info
+文档
+下载
+音乐
+桌面
+hello,world
+```
 
 #### 7.2.17 ln 软链接
 
+软链接也称为符号链接，类似于 windows 里的快捷方式，有自己的数据块，主要存放了链接其他文件的路径。
+
 （1）基本语法 
 
+> ln -s [原文件或目录] [软链接名] （功能描述：给原文件创建一个软链接）
+
+- 删除软链接： rm -rf 软链接名，而不是 rm -rf 软链接名/ 
+
+- 如果使用 rm -rf 软链接名/ 删除，会把软链接对应的真实目录下内容删掉 
+
+- 查询：通过 ll 就可以查看，列表属性第 1 位是 l，尾部会有位置指向。
+
 （2）举例
+
+```bash
+#创建软连接--在root目录创建软连接，能够访问/home/huangyb下的info文件
+[root@localhost ~]# ln -s /home/huangyb/info ./info
+[root@localhost ~]# ll  # 普通文件首位-，目录首位d，软连接首位l，实际路径/home/huangyb/info
+lrwxrwxrwx. 1 root root   18 12月  7 21:58 info -> /home/huangyb/info
+# 目录软连接
+[root@localhost ~]# ln -s /home/huangyb/ huangyb
+[root@localhost ~]# ll
+lrwxrwxrwx. 1 root root   14 12月  7 22:08 huangyb -> /home/huangyb/
+lrwxrwxrwx. 1 root root   18 12月  7 21:58 info -> /home/huangyb/info
+[root@localhost ~]# cd huangyb/
+[root@localhost huangyb]# ls
+info  initial.cfg  公共  模板  视频  图片  文档  下载  音乐  桌面
+[root@localhost huangyb]# pwd 
+/root/huangyb
+[root@localhost huangyb]# pwd -P  # 物理路径
+/home/huangyb
+#进入软连接实际物理路径
+[root@localhost ~]# cd -P /root/huangyb/
+[root@localhost huangyb]# pwd
+/home/huangyb
+#删除软连接(注意不要写最后的/)
+[root@localhost ~]# rm info
+rm：是否删除符号链接 "info"？y
+[root@localhost ~]# rm -rf huangyb  # 只删除软连接
+[root@localhost ~]# rm -rf huangyb/  # 删除真实目录下的文件，软连接和真实目录未删除，内容全被删
+```
+
+软连接和硬链接：（软连接类似于链表的结点，硬链接类似于指针）   ？？？
+
+- 软连接，有自己的inode（文件id），inode指向的自己数据块，数据块存储的是原始文件的地址
+- 硬链接，链接指向原始数据的inode，inode指向实际存储文件数据的区域
 
 #### 7.2.18 history
 
+查看已经执行过历史命令
+
 （1）基本语法 
 
+> history （功能描述：查看已经执行过历史命令）
+
 （2）举例
+
+```bash
+[root@localhost huangyb]# history 10
+  126  cd
+  127  cd -P /root/huangyb/
+  128  pwd
+  129  cd -
+  130  ls
+  131  rm info
+  132  rm -rf huangyb
+  133  cd /home/huangyb/
+  134  ls
+  135  history 10
+[root@localhost huangyb]# !134
+ls
+info  initial.cfg  公共  模板  视频  图片  文档  下载  音乐  桌面
+[root@localhost huangyb]# history -c
+[root@localhost huangyb]# history 
+    1  history 
+```
+
+
 
 ### 7.3 时间日期类
 
