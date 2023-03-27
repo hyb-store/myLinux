@@ -184,11 +184,12 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens33
 
 内容
 
-```
+```shell
 TYPE="Ethernet" #网络类型（通常是 Ethemet） 
 PROXY_METHOD="none" 
 BROWSER_ONLY="no" 
-BOOTPROTO="static" #IP 的配置方法[none|static|bootp|dhcp]（引导 时不 使用协议|静态分配 IP|BOOTP 协议|DHCP 协议） DEFROUTE="yes" 
+BOOTPROTO="static" #IP 的配置方法[none|static|bootp|dhcp]（引导 时不 使用协议|静态分配 IP|BOOTP 协议|DHCP 协议） 
+DEFROUTE="yes" 
 IPV4_FAILURE_FATAL="no" 
 IPV6INIT="yes" 
 IPV6_AUTOCONF="yes" 
